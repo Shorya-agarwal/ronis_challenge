@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="dashboard-section">
+    <h2>Popular Items</h2>
+    <div id="sales_chart"></div>
+</div>
+<div class="dashboard-section">
+    <h2>Order Trends</h2>
+    <div id="trends_chart"></div>
+</div>
+<div class="dashboard-section">
+    <h2>Meal Preparation Efficiency</h2>
+    <div id="efficiency_chart"></div>
+</div>
+
+<script>
+    async function loadChart(url, chartId) {
+        const response = await fetch(url);
+        const chartData = await response.json();
+        Plotly.newPlot(chartId, chartData.data, chartData.layout);
+    }
+
+    loadChart('/sales', 'sales_chart');
+    loadChart('/trends', 'trends_chart');
+    loadChart('/efficiency', 'efficiency_chart');
+</script>
+{% endblock %}

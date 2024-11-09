@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="dashboard-section">
+    <h2>Meal Preparation Efficiency Analysis</h2>
+    <p>Analyze the meal preparation steps to identify potential delays and bottlenecks. This section visualizes average time spent on each step in the preparation process.</p>
+    <div id="efficiency_chart"></div>
+</div>
+
+<script>
+    // Load the efficiency chart data
+    async function loadEfficiencyChart() {
+        const response = await fetch('/efficiency');
+        const chartData = await response.json();
+        Plotly.newPlot('efficiency_chart', chartData.data, chartData.layout);
+    }
+
+    loadEfficiencyChart();
+</script>
+{% endblock %}

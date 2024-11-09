@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="dashboard-section">
+    <h2>Customer Insights</h2>
+    <p>Explore customer preferences and trends. This section includes visualizations of popular menu items and demand patterns by day of the week or month.</p>
+
+    <div id="popular_items_chart"></div>
+    <div class="divider"></div>
+    <div id="trends_chart"></div>
+</div>
+
+<script>
+    // Load the popular items chart data
+    async function loadPopularItemsChart() {
+        const response = await fetch('/sales');
+        const chartData = await response.json();
+        Plotly.newPlot('popular_items_chart', chartData.data, chartData.layout);
+    }
+
+    // Load the demand trends chart data
+    async function loadTrendsChart() {
+        const response = await fetch('/trends');
+        const chartData = await response.json();
+        Plotly.newPlot('trends_chart', chartData.data, chartData.layout);
+    }
+
+    loadPopularItemsChart();
+    loadTrendsChart();
+</script>
+{% endblock %}

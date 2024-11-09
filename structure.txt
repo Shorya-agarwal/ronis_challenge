@@ -1,0 +1,11 @@
+ronis_mac_bar/
+├── app.py                # Flask application
+├── templates/
+│   ├── layout.html       # Main layout template
+│   ├── dashboard.html    # Main dashboard template
+│   ├── insights.html     # Insights template
+│   └── efficiency.html   # Efficiency analysis template
+├── static/
+│   └── style.css         # Custom CSS for styling
+└── data/
+    └── ronis_data.xlsx   # Excel file with 3 sheets
